@@ -1,9 +1,16 @@
 from budget import Expense
 from collections import Counter
 import matplotlib.pyplot as plt
+import os
 
 expenses = Expense.Expenses()
-expenses.read_expenses('../data/spending_data.csv')
+
+# script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
+script_dir = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'data'))
+rel_path = "spending_data.csv"
+# os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'data'))
+abs_file_path = os.path.join(script_dir, rel_path)
+expenses.read_expenses(abs_file_path)
 
 spending_categories = []
 for expense in expenses.list:
